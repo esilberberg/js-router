@@ -13,7 +13,7 @@
       const path = window.location.hash.replace('#', '');
       
       // Update the browser history and address bar without reloading the page
-      history.pushState({ page: 1 }, "My App", '/static-dynamic-routing' + path);
+      history.pushState({ page: 1 }, "My App", '/js-router' + path);
 
       // Update the content with the dynamic value
       const headerElement = document.getElementById('header');
