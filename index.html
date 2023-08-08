@@ -18,10 +18,11 @@
         // Function to update content based on the requested path
         function updateContent() {
             const path = window.location.pathname.replace('/js-router', '');
+            console.log("Current path:", path);
 
             const contentDiv = document.getElementById('content');
             const header = document.createElement('h2');
-            
+
             if (path === '/') {
                 header.textContent = 'Home Page';
             } else if (path === '/about') {
@@ -29,10 +30,11 @@
             } else {
                 header.textContent = `Requested Path: ${path}`;
             }
-            
+
             contentDiv.innerHTML = '';
             contentDiv.appendChild(header);
         }
+
 
         // Initial page load
         updateContent();
