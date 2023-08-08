@@ -4,20 +4,27 @@
   <title>My App</title>
 </head>
 <body>
+  <nav>
+    <ul>
+      <li><a href="/js-router/">Home</a></li>
+      <li><a href="/js-router/about">About</a></li>
+      <li><a href="/js-router/contact">Contact</a></li>
+    </ul>
+  </nav>
   <h1>My App</h1>
-  <h2 id="header">Post Path: {PATH}</h2>
+  <div id="content"></div>
   <script>
     // Check if the URL hash contains a value
     if (window.location.hash.length > 1) {
       // Extract the dynamic part from the hash
       const path = window.location.hash.replace('#', '');
+      const contentElement = document.getElementById('content');
       
       // Update the browser history and address bar without reloading the page
       history.pushState({ page: 1 }, "My App", '/js-router' + path);
 
       // Update the content with the dynamic value
-      const headerElement = document.getElementById('header');
-      headerElement.innerHTML = headerElement.innerHTML.replace('{PATH}', path);
+      contentElement.innerHTML = `Content for ${path} page`;
     }
   </script>
 </body>
