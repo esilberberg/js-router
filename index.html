@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Routing Example</title>
+</head>
+<body>
+    <h1>Dynamic Routing Example</h1>
+    <nav>
+        <ul>
+            <li><a href="/js-router/">Home</a></li>
+            <li><a href="/js-router/about">About</a></li>
+        </ul>
+    </nav>
+    <div id="content">
+        <!-- Content will be updated dynamically here -->
+    </div>
+    <script>
+        // Function to update content based on the requested path
+        function updateContent(path) {
+            const contentDiv = document.getElementById('content');
+            const header = document.createElement('h2');
+            
+            if (path === '/') {
+                header.textContent = 'Home Page';
+            } else if (path === '/about') {
+                header.textContent = 'About Page';
+            } else {
+                header.textContent = `Requested Path: ${path}`;
+            }
+            
+            contentDiv.innerHTML = '';
+            contentDiv.appendChild(header);
+        }
+
+        // Initial page load
+        const initialPath = window.location.pathname.replace('/js-router', '');
+        updateContent(initialPath);
+
+        // Handle changes to the URL using the history API
+        window.addEventListener('popstate', () => {
+            const newPath = window.location.pathname.replace('/js-router', '');
+            updateContent(newPath);
+        });
+    </script>
+</body>
+</html>
