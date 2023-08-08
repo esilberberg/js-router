@@ -1,49 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dynamic Routing Example</title>
+  <title>My App</title>
 </head>
 <body>
-    <h1>Dynamic Routing Example</h1>
-    <nav>
-        <ul>
-            <li><a href="/js-router/">Home</a></li>
-            <li><a href="/js-router/about">About</a></li>
-        </ul>
-    </nav>
-    <div id="content">
-        <!-- Content will be updated dynamically here -->
-    </div>
-<script>
-    // Function to update content based on the requested path
-    function updateContent(path) {
-        const contentDiv = document.getElementById('content');
-        const header = document.createElement('h2');
-        
-        if (path === '/') {
-            header.textContent = 'Home Page';
-        } else if (path === '/about') {
-            header.textContent = 'About Page';
-        } else {
-            header.textContent = `Requested Path: ${path}`;
-        }
-        
-        contentDiv.innerHTML = '';
-        contentDiv.appendChild(header);
+  <h1>My App</h1>
+  <h2 id="header">Post Path: {PATH}</h2>
+  <script>
+    // Check if the URL hash contains a value
+    if (window.location.hash.length > 1) {
+      // Extract the dynamic part from the hash
+      const path = window.location.hash.replace('#', '');
+      
+      // Update the browser history and address bar without reloading the page
+      history.pushState({ page: 1 }, "My App", '/static-dynamic-routing' + path);
+
+      // Update the content with the dynamic value
+      const headerElement = document.getElementById('header');
+      headerElement.innerHTML = headerElement.innerHTML.replace('{PATH}', path);
     }
-
-    // Function to handle popstate events
-    function handlePopstate() {
-        const path = window.location.pathname.replace('/js-router', '');
-        console.log("Current path:", path);
-        updateContent(path);
-    }
-
-    // Initial page load
-    handlePopstate();
-
-    // Handle changes to the URL using the popstate event
-    window.addEventListener('popstate', handlePopstate);
-</script>
+  </script>
 </body>
 </html>

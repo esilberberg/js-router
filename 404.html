@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Page Not Found</title>
+  <title>Redirecting...</title>
 </head>
 <body>
-    <h1>404 - Page Not Found</h1>
-    <p>The requested page does not exist.</p>
+  <script>
+    // Extract the current path from the URL
+    const currentPath = window.location.pathname.replace('/static-dynamic-routing', '');
+    
+    // Redirect to the app's root with the current path as a hash
+    window.location.href = '/static-dynamic-routing/#' + currentPath;
+  </script>
 </body>
 </html>
