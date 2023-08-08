@@ -16,7 +16,9 @@
     </div>
     <script>
         // Function to update content based on the requested path
-        function updateContent(path) {
+        function updateContent() {
+            const path = window.location.pathname.replace('/js-router', '');
+
             const contentDiv = document.getElementById('content');
             const header = document.createElement('h2');
             
@@ -33,13 +35,11 @@
         }
 
         // Initial page load
-        const initialPath = window.location.pathname.replace('/js-router', '');
-        updateContent(initialPath);
+        updateContent();
 
-        // Handle changes to the URL using the history API
+        // Handle changes to the URL using the popstate event
         window.addEventListener('popstate', () => {
-            const newPath = window.location.pathname.replace('/js-router', '');
-            updateContent(newPath);
+            updateContent();
         });
     </script>
 </body>
